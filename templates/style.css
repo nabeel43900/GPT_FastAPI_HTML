@@ -1,0 +1,18 @@
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 100px;
+}
+
+#openaiForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#result {
+    text-align: center;
+    margin-top: 10px;
+}

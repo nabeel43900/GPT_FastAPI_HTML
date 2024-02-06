@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PERSONAL ASSISTANT</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-200">
+    <div class="flex items-center justify-center my-5 z-10 relative">
+    <h1 class="text-3xl font-bold m-20 p-5 bg-black text-white rounded-full w-96">PERSONAL ASSISTANT</h1>
+    </div>
+
+    <div class="flex items-center justify-center">
+    <form id="openaiForm" class="bg-white p-8 rounded-lg shadow-md">
+        <label for="prompt" class="block text-sm font-semibold text-gray-600">Enter your prompt:</label>
+        <input type="text" id="prompt" name="prompt" required class="w-full px-4 py-2 mt-2 text-sm border rounded-md focus:outline-none focus:border-blue-500">
+        <button type="button" onclick="generateDescription()" class="w-full px-4 py-2 mt-4 text-white bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600">Generate Description</button>
+    </form>
+    </div>
+    
+    <div id="result" class="mt-8 text-gray-800 bg-gray-200 border-4 border-black p-4 rounded-lg mx-auto max-w-md relative z-10"></div>
+
+    <container class="bg-red-500">
+
+    <script>
+        async function generateDescription() {
+            const prompt = document.getElementById('prompt').value;
+            const response = await fetch('/generate_description', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ prompt: prompt })
+            });
+
+            const result = await response.json();
+            document.getElementById('result').innerText = result.product_description;
+        }
+    </script>
+    </container>
+
+</body>
+</html>
